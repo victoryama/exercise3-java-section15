@@ -15,7 +15,7 @@ public class Reservation {
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	public Reservation(Integer roomNumber, Date checkIn, Date checkOut) {
-		if (!checkOut.after(checkIn)) {
+		if (!checkOut.after(checkIn)) { //data tem um metodo after que verifica a ordem
 			throw new DomainException("Check-out date must be after check-in date");
 		}
 		this.roomNumber = roomNumber;
@@ -39,9 +39,9 @@ public class Reservation {
 		return checkOut;
 	}
 
-	public long duration() {
-		long diff = checkOut.getTime() - checkIn.getTime();
-		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+	public long duration() { //retonar o inteiro mais longo, diferenca é dado por tipo long 
+		long diff = checkOut.getTime() - checkIn.getTime(); //calcula em milisegundos
+		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS); 
 	}
 	
 	public void updateDates(Date checkIn, Date checkOut) {
